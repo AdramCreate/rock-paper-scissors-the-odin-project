@@ -20,6 +20,9 @@ const ROUND_DESCRIPTIONS = {
 let playerWins = 0;
 let computerWins = 0;
 
+const MAX_ROUNDS = 5;
+let currentRound = 1;
+
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
@@ -120,7 +123,8 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function startGame() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < MAX_ROUNDS; i++) {
+        console.log('Round ' + currentRound);
         const playerSelection = window.prompt(
             'Enter Rock, Paper, Scissors move now'
         );
@@ -128,7 +132,10 @@ function startGame() {
         const computerSelection = computerPlay();
         console.log('Computer plays: ' + computerSelection);
         console.log(playRound(playerSelection, computerSelection));
+        outputCurrentWins();
         console.log('\n');
+
+        currentRound++;
     }
 
     if (playerWins === computerWins) {
@@ -140,4 +147,9 @@ function startGame() {
     }
 }
 
+function outputCurrentWins() {
+    console.log(
+        'Player Wins: ' + playerWins + ' vs. Computer Wins: ' + computerWins
+    );
+}
 startGame();
