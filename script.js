@@ -1,7 +1,7 @@
 const MOVES = {
-    ROCK: 'rock',
-    PAPER: 'paper',
-    SCISSORS: 'scissors',
+    ROCK: 'ROCK',
+    PAPER: 'PAPER',
+    SCISSORS: 'SCISSORS',
 };
 
 const ROUND_STATEMENTS = {
@@ -12,9 +12,9 @@ const ROUND_STATEMENTS = {
 };
 
 const ROUND_DESCRIPTIONS = {
-    ROCK_WIN_DESCRIPTION: 'Rock beats Scissors.',
-    PAPER_WIN_DESCRIPTION: 'Paper beats Rock.',
-    SCISSORS_WIN_DESCRIPTION: 'Scissors beats Rock.',
+    ROCK_WIN_DESCRIPTION: getWinDescription(MOVES.ROCK, MOVES.SCISSORS),
+    PAPER_WIN_DESCRIPTION: getWinDescription(MOVES.PAPER, MOVES.ROCK),
+    SCISSORS_WIN_DESCRIPTION: getWinDescription(MOVES.SCISSORS, MOVES.PAPER),
 };
 
 let playerWins = 0;
@@ -22,6 +22,14 @@ let computerWins = 0;
 
 const MAX_ROUNDS = 5;
 let currentRound = 1;
+
+const rockButtonElement = document.getElementById('rock-button');
+const paperButtonElement = document.getElementById('paper-button');
+const scissorsButtonElement = document.getElementById('scissors-button');
+
+function getWinDescription(winnerMove, loserMove) {
+    return `${winnerMove} beats ${loserMove}.`;
+}
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -42,7 +50,7 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
     let roundStatement = '';
-    const finalPlayerSelection = playerSelection.toLowerCase();
+    const finalPlayerSelection = playerSelection;
 
     if (computerSelection === null || computerSelection === undefined) {
         roundStatement = ROUND_STATEMENTS.ERROR_STATEMENT;
@@ -122,34 +130,43 @@ function playRound(playerSelection, computerSelection) {
     return roundStatement;
 }
 
-function startGame() {
-    for (let i = 0; i < MAX_ROUNDS; i++) {
-        console.log('Round ' + currentRound);
-        const playerSelection = window.prompt(
-            'Enter Rock, Paper, Scissors move now'
-        );
-        console.log('You play: ' + playerSelection);
-        const computerSelection = computerPlay();
-        console.log('Computer plays: ' + computerSelection);
-        console.log(playRound(playerSelection, computerSelection));
-        outputCurrentWins();
-        console.log('\n');
-
-        currentRound++;
-    }
-
-    if (playerWins === computerWins) {
-        console.log('TIE GAME');
-    } else if (playerWins > computerWins) {
-        console.log('PLAYER WINS!!!');
-    } else {
-        console.log('COMPUTER WINS!!!');
-    }
+function initializeRound(playerSelection) {
+    console.log('Round ' + currentRound);
+    console.log('You play: ' + playerSelection);
+    const computerSelection = computerPlay();
+    console.log('Computer plays: ' + computerSelection);
+    console.log(playRound(playerSelection, computerSelection));
+    outputCurrentWins();
+    console.log('\n');
+    currentRound++;
 }
+
+// function startGame() {
+
+//     if (playerWins === computerWins) {
+//         console.log('TIE GAME');
+//     } else if (playerWins > computerWins) {
+//         console.log('PLAYER WINS!!!');
+//     } else {
+//         console.log('COMPUTER WINS!!!');
+//     }
+// }
 
 function outputCurrentWins() {
     console.log(
         'Player Wins: ' + playerWins + ' vs. Computer Wins: ' + computerWins
     );
 }
-startGame();
+// startGame();
+
+rockButtonElement.addEventListener('click', () => {
+    initializeRound(MOVES.ROCK);
+});
+
+paperButtonElement.addEventListener('click', () => {
+    initializeRound(MOVES.PAPER);
+});
+
+scissorsButtonElement.addEventListener('click', () => {
+    initializeRound(MOVES.SCISSORS);
+});
