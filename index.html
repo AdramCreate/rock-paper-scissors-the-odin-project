@@ -1,18 +1,44 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>
-            Rock, Paper, Scissors | The Odin Project | Adrian San Pedro
-        </title>
+        <title>Rock, Paper, Scissors | Adrian San Pedro</title>
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <section>
-            <button id="rock-button" type="button">Rock</button>
-            <button id="paper-button" type="button">Paper</button>
-            <button id="scissors-button" type="button">Scissors</button>
-        </section>
+        <main>
+            <header>
+                <h1>Rock, Paper, Scissors | Adrian San Pedro</h1>
+            </header>
+            <section id="general-info-section">
+                <h2>Round <span id="current-round-number">0</span></h2>
+                <section id="main-points-section">
+                    <div id="player-points-container" class="points-container">
+                        <h3>Player Wins:</h3>
+                        <p id="player-points-total">0</p>
+                    </div>
+                    <div
+                        id="computer-points-container"
+                        class="points-container"
+                    >
+                        <h3>Computer Wins:</h3>
+                        <p id="computer-points-total">0</p>
+                    </div>
+                </section>
+            </section>
+            <section id="round-info-section">
+                <ul id="round-info-list">
+                    <li id="initial-info-message-item" class="round-info-item">
+                        New game of Rock, Paper, Scissors started!
+                    </li>
+                </ul>
+            </section>
+            <section id="moves-section">
+                <button id="rock-button" type="button">Rock</button>
+                <button id="paper-button" type="button">Paper</button>
+                <button id="scissors-button" type="button">Scissors</button>
+            </section>
+        </main>
         <script src="script.js"></script>
     </body>
 </html>
