@@ -1,0 +1,29 @@
+main {
+    /* text-align: center; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#general-info-section {
+    text-align: center;
+}
+
+#main-points-section {
+    margin-left: 50px;
+}
+
+#round-info-section {
+    display: block;
+    border: solid black;
+    height: 250px;
+    width: 500px;
+    text-align: center;
+    overflow-y: scroll;
+    margin-bottom: 25px;
+}
+
+.points-container {
+    display: inline-block;
+    margin-right: 25px;
+}
