@@ -21,6 +21,7 @@ const GAME_END_STATEMENTS = {
     PLAYER_WIN: 'PLAYER WINS!!! GAME OVER!!!',
     COMPUTER_WIN: 'COMPUTER WINS!!! GAME OVER!!!',
     TIE_GAME: 'TIE GAME!!! GAME OVER!!!',
+    RESTART_GAME_INFO: 'Refresh page to play again.',
 };
 
 let playerWins = 0;
@@ -195,6 +196,9 @@ function setWinnerInfo() {
     }
 
     addChildItemToRoundInfoList(newChildItem);
+    addChildItemToRoundInfoList(
+        getChildRoundInfoItem(GAME_END_STATEMENTS.RESTART_GAME_INFO)
+    );
 }
 
 function disableButtons() {
