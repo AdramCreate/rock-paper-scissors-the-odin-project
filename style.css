@@ -27,3 +27,11 @@ main {
     display: inline-block;
     margin-right: 25px;
 }
+
+@media (max-width: 500px) {
+    #round-info-section {
+        width: 100%;
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+}
