@@ -17,6 +17,13 @@ const ROUND_DESCRIPTIONS = {
     SCISSORS_WIN_DESCRIPTION: getWinDescription(MOVES.SCISSORS, MOVES.PAPER),
 };
 
+const GAME_END_STATEMENTS = {
+    PLAYER_WIN: 'PLAYER WINS!!! GAME OVER!!!',
+    COMPUTER_WIN: 'COMPUTER WINS!!! GAME OVER!!!',
+    TIE_GAME: 'TIE GAME!!! GAME OVER!!!',
+    RESTART_GAME_INFO: 'Refresh page to play again.',
+};
+
 let playerWins = 0;
 let computerWins = 0;
 
@@ -181,20 +188,27 @@ function setWinnerInfo() {
     let newChildItem;
 
     if (playerWins === computerWins) {
-        newChildItem = getChildRoundInfoItem('TIE GAME');
+        newChildItem = getChildRoundInfoItem(GAME_END_STATEMENTS.TIE_GAME);
     } else if (playerWins > computerWins) {
-        newChildItem = getChildRoundInfoItem('PLAYER WINS!!!');
+        newChildItem = getChildRoundInfoItem(GAME_END_STATEMENTS.PLAYER_WIN);
     } else {
-        newChildItem = getChildRoundInfoItem('COMPUTER WINS!!!');
+        newChildItem = getChildRoundInfoItem(GAME_END_STATEMENTS.COMPUTER_WIN);
     }
 
     addChildItemToRoundInfoList(newChildItem);
+    addChildItemToRoundInfoList(
+        getChildRoundInfoItem(GAME_END_STATEMENTS.RESTART_GAME_INFO)
+    );
 }
 
 function disableButtons() {
     rockButtonElement.setAttribute('disabled', '');
     paperButtonElement.setAttribute('disabled', '');
     scissorsButtonElement.setAttribute('disabled', '');
+}
+
+function scrollToBottom() {
+    roundInfoListElement.scrollIntoView(false);
 }
 
 function initializeRound(playerSelection) {
@@ -214,6 +228,7 @@ function initializeRound(playerSelection) {
         setWinnerInfo();
         disableButtons();
     }
+    scrollToBottom();
 }
 
 function outputCurrentWins() {

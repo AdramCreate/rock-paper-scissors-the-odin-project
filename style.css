@@ -1,5 +1,8 @@
+html {
+    background-color: orange;
+}
+
 main {
-    /* text-align: center; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,9 +24,46 @@ main {
     text-align: center;
     overflow-y: scroll;
     margin-bottom: 25px;
+    background-color: white;
 }
 
 .points-container {
     display: inline-block;
     margin-right: 25px;
+}
+
+.move-button {
+    font-size: 14px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.move-button:disabled {
+    opacity: 0.8;
+}
+
+#rock-button {
+    background-color: lightgray;
+    color: black;
+}
+
+#paper-button {
+    background-color: white;
+    color: black;
+}
+
+#scissors-button {
+    background-color: darkblue;
+    color: white;
+}
+
+@media (max-width: 500px) {
+    #round-info-section {
+        width: 100%;
+        margin-left: 25px;
+        margin-right: 25px;
+    }
 }
